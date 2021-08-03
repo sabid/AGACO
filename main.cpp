@@ -6,7 +6,7 @@ using namespace std;
 
 const int tamanoArreglo  = 5;
 
-// DeficiÃ³n de arreglos
+// Defición de arreglos
 string fechaCompra[tamanoArreglo];
 string descripcionSemillaPastoMejorada[tamanoArreglo];
 int costoSemillaPastoMejorada[tamanoArreglo];
@@ -17,8 +17,17 @@ string agregarFecha(int dia, int mes, int year);
 
 void agregarDescripcion();
 void imprimir();
+//
+void AgregarCostos();
+//
+void Total();
+//
+void AgregarCantidades();
+
 
 int posicionDescripcion = 0;
+int posicioncosto = 0;
+int posicioncantidad = 0;
 
 char menuPrincipal()
 {
@@ -49,17 +58,17 @@ char menuSemilla()
     char Option;
     cout<<"\t\t****Menu Semilla****\n"
         <<"\tA.-> Agregar Fecha: \n"
-        <<"\tB.-> Agregar DescripciÃ³n: \n"
+        <<"\tB.-> Agregar Descripción: \n"
         <<"\tC.-> Agregar  Costo: \n"
         <<"\tD.-> Agregar Cantidad: \n"
-        <<"\tE.-> Regresar al menÃº anterior. \n"
+        <<"\tE.-> Regresar al menú anterior. \n"
         <<"Su Eleccion Es: ";
     cin.get(Option);
-    cin.ignore();
+    //cin.ignore();
     Option = toupper(Option);//Convierte a Mayusculas
 
     if(Option<'A' || Option>'E'){
-        cout<<"\n\tLa opcion ingresada es incorrecta!!!"
+        cout<<"\n\tLa opcion ingresada es incorrecta: "<<Option<<"\n"
             <<"\n\tFavor vuelva a intentarlo!!!\n";
         Option = menuSemilla();// Llamado Recursivo
     }
@@ -114,7 +123,7 @@ int main(int argc, char *argv[])
 
                             break;
                         case 'B':
-                            // llamar a la funcion para agregar DescripciÃ³n
+                            // llamar a la funcion para agregar Descripción
                             agregarDescripcion();
 
                             imprimir();
@@ -122,15 +131,21 @@ int main(int argc, char *argv[])
                             break;
                         case 'C':
                             // llamar a la funcion para agregar Costo
-                            cout << "\n\t Agregar Costo \n\n";
+                            //cout << "\n\t Agregar Costo \n\n";
+                            AgregarCostos();
+
+                            imprimir();
                             break;
                         case 'D':
                             // llamar a la funcion para agregar Cantidad
-                            cout << "\n\t Agregar Cantidad \n\n";
+                            AgregarCantidades();
+                            Total();
+                            imprimir();
+
                             break;
                         case 'E':
-                            // Regresar al menÃº anterior, llamando el menu
-                            cout << "\n\t Regresar al menÃº anterior \n\n";
+                            // Regresar al menú anterior, llamando el menu
+                            cout << "\n\t Regresar al menú anterior \n\n";
                             break;
 
                     }
@@ -198,9 +213,9 @@ void agregarDescripcion()
 {
     string descripcion;
 
-    cout << "\n\t Agregar DescripciÃ³n: ";
+    cout << "\n\t Agregar Descripción: ";
 
-    //cin >> input; // get user input from the keyboard
+    //cin >> descripcion;
 
     getline(cin, descripcion);
 
@@ -215,9 +230,65 @@ void imprimir() {
 
     for(int i = 0; i < tamanoArreglo; i++)
     {
-        cout << "\t Descripcion: " << descripcionSemillaPastoMejorada[i] ;
+        cout << "\t Descripcion: " << descripcionSemillaPastoMejorada[i];
+        cout << "\t Costo: " << costoSemillaPastoMejorada[i];
+        cout << "\t Cantidad: "<< cantidadSemillaPastoMejorada[i];
+        cout << "\t Total: "<< totalSemillaPastoMejorada[i]<<"\n";
+
     }
 
+
+
+}
+
+void AgregarCostos(){
+
+
+    int costo;
+    cout << "Por favor ingrese la siguiente información de los costos de semillas: \n";
+        for(int i = 0; i < tamanoArreglo ; i++){
+
+    cout << "\n******* Costo de semilla " << i + 1 << "********:\n";
+                cout << "Costo: ";
+                cin >>costo;
+
+
+        costoSemillaPastoMejorada[i] = costo;
+        //posicioncosto++;
+
+        }
+}
+/*void ImprimirCostos() {
+
+
+    for(int i = 0; i < tamanoArreglo; i++)
+    {
+        cout << "\t Costos: " << costoSemillaPastoMejorada[i] ;
+    }
+
+}*/
+
+void AgregarCantidades(){
+
+    int cantidad;
+    cout << "Por favor ingrese la informacion de los costos de las semillas: \n";
+    for(int i = 0; i < tamanoArreglo ; i++){
+
+        cout << "\n******* Cantidad de semilla " << i + 1 << "********:\n";
+        cout << "Cantidad: ";
+        cin >>cantidad;
+        cantidadSemillaPastoMejorada[i] = cantidad;
+
+     }
+
+}
+
+void Total(){
+    for(int i = 0; i < tamanoArreglo ; i++){
+
+        cout << "Total: ";
+        totalSemillaPastoMejorada[i] = cantidadSemillaPastoMejorada[i] * costoSemillaPastoMejorada[i];
+    }
 }
 
 
