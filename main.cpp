@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    cout << "Hola mundo aqui" << endl;
+    cout << "Tarea #1" << endl;
 
     return 0;
 
